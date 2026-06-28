@@ -3,7 +3,7 @@ import { loadGame, initUpgradeAnimations } from "./data/saveLoad.mjs";
 import { addScore } from "./gameplay/tap.mjs";
 import { upgradeHandler } from "./logic/economy.mjs";
 import { showPanel, switchPanel } from "./ui/panel.mjs";
-import { warpHandler } from "./logic/warp.mjs";
+import { warpHandler, resultHandler } from "./logic/warp.mjs";
 import { gameData } from "./data/gameData.mjs";
 import * as anim from "./ui/animation.mjs";
 import { updateUI } from "./ui/updateUI.mjs";
@@ -101,7 +101,7 @@ element.gachaBtn.multi.addEventListener("click", () => {
 });
 
 element.warp.result.addEventListener("click", () => {
-  element.warp.result.classList.remove("active");
+  resultHandler();
 });
 
 // dev area

@@ -6,10 +6,14 @@ import * as anim from "../ui/animation.mjs";
 import { updateUI } from "../ui/updateUI.mjs";
 import { element } from "../data/domData.mjs";
 
+let currentPullState = null;
+let currentCardIndex = 0;
+let resultNow = [];
+
 function warpHandler(pullType) {
   let singleCost = gameData.warp.price.single;
   let multiCost = gameData.warp.price.multi;
-  let resultNow = [];
+  currentPullState = pullType;
 
   if (pullType === "single") {
     if (checkWarp(singleCost, gameData.scorePoint)) {
@@ -17,7 +21,7 @@ function warpHandler(pullType) {
       resultNow.push(singlePull()); // masukkan hasil pull ke resultNow variable
       anim.doWarpAnimation(); // lakukan animasi warp
       showResult();
-      warpShowcase(pullType, resultNow);
+      warpShowcase(currentPullState, resultNow);
     } else {
       duitKurang(singleCost);
     }
@@ -27,7 +31,7 @@ function warpHandler(pullType) {
       resultNow.push(...multiPull());
       anim.doWarpAnimation();
       showResult();
-      warpShowcase(pullType, resultNow);
+      warpShowcase(currentPullState, resultNow);
     } else {
       duitKurang(multiCost);
     }
@@ -74,16 +78,52 @@ function multiPull() {
 
 function warpShowcase(type, source) {
   if (type === "single") {
-    element.warp.name.textContent = source[0].name;
-    element.warp.rarity.textContent = source[0].rarity;
-    element.warp.img.src = source[0].source;
+    displayCard(currentCardIndex, source);
+    resultNow.shift();
   } else {
-    for (let i = 0; i < 10; i++) {
-      element.warp.name.textContent = source[i].name;
-      element.warp.rarity.textContent = source[i].rarity;
-      element.warp.img.src = source[i].source;
-    }
+    currentCardIndex = 0;
+    displayCard(currentCardIndex, source);
   }
 }
 
-export { warpHandler };
+function createWarpCard(name, rarity, img) {
+  return ` <div class="result-wrapper">
+  <div class="result">
+              <h1 class="result__header">
+                You got a
+                <span class="highlight" id="result-rarity">${rarity}</span> star
+                character
+                <span class="highlight" id="result-name">${name}</span>
+              </h1>
+              <img
+                id="result-img"
+                src="${img}"
+                class="result-img"
+                alt=""
+              />
+            </div>
+            </div>`;
+}
+
+function displayCard(index, source) {
+  const name = source[index].name;
+  const rarity = source[index].rarity;
+  const img = source[index].source;
+
+  const card = createWarpCard(name, rarity, img);
+
+  element.warp.result.innerHTML = card;
+}
+
+function resultHandler() {
+  if (currentPullState === "single") {
+    element.warp.result.classList.remove("active");
+  } else if (currentPullState === "multi" && resultNow.length !== 0) {
+    console.log("ini result now", resultNow);
+    displayCard(currentCardIndex, resultNow);
+    resultNow.shift();
+  } else {
+    element.warp.result.classList.remove("active");
+  }
+}
+export { warpHandler, resultHandler };
