@@ -1,0 +1,370 @@
+:root {
+  --indigo: #242448; /* outline / teks gelap */
+  --lav: #d3bce3; /* panel pastel */
+  --pink: #f8bbd0; /* aksen */
+  --peach: #fac8af; /* aksen 2 */
+  --gold: #ffc038; /* highlight */
+  --snow: #fcfcfc; /* dasar terang */
+  --ink: #1a1a1a; /* pixel black */
+  --pastel-strawberry: #ff7aa6;
+  --strawberry: #e22e63;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* container banner */
+.banner-select {
+  margin-top: 0.5rem;
+  width: 100%;
+  min-height: 10px;
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* select lgsg 2 bannernya */
+.banner {
+  cursor: pointer;
+  border: 1.5px solid var(--indigo);
+  border-bottom: 0.25rem solid var(--indigo);
+  padding: 0.5rem;
+  background-color: var(--snow);
+  flex: 1;
+  font-size: 1.2rem;
+  color: var(--indigo);
+  transition: border-color 0.2s ease;
+  -webkit-transition: border-color 0.2s ease-in-out;
+  -moz-transition: border-color 0.2s ease;
+  -ms-transition: border-color 0.2s ease;
+  -o-transition: border-color 0.2s ease;
+}
+/* banner kalo di-hover */
+.banner:hover {
+  border-color: var(--strawberry);
+}
+/* banner yg active */
+.banner.active {
+  background-color: var(--gold);
+}
+
+.banner-image {
+  position: relative;
+  margin-top: 0.5rem;
+  width: 100%;
+  max-height: 100%;
+}
+.show {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  filter: brightness(2);
+  pointer-events: none;
+  transition: all 0.2s ease-in-out;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--snow);
+  border: 1.5px solid var(--indigo);
+  border-bottom: 0.25rem solid var(--indigo);
+  position: relative;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  display: flex;
+  -webkit-filter: brightness(2);
+}
+.show.active {
+  filter: brightness(1);
+  position: absolute;
+  opacity: 1;
+  pointer-events: auto;
+  -webkit-filter: brightness(1);
+}
+.description {
+  padding: 0.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--snow);
+  max-width: 40%;
+  border-top-right-radius: 2rem;
+  height: 100%;
+}
+.description-paragraph {
+  font-size: 0.75rem;
+  text-align: justify;
+  color: var(--indigo);
+  filter: opacity(0.5);
+  -webkit-filter: opacity(0.5);
+}
+.showcase {
+  /* background-size: cover; */
+  width: 100%;
+}
+.showcase img {
+  width: inherit;
+}
+.f-star__showcase {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  width: 100%;
+  height: 50%;
+}
+
+.f-star__image {
+  background: url("https://upload-os-bbs.hoyolab.com/upload/2024/04/26/40717305/7508a8aabc82ff337d66c41cbabdab0b_4014752956873582437.jpeg?x-oss-process=image%2Fresize%2Cs_1000%2Fauto-orient%2C0%2Finterlace%2C1%2Fformat%2Cwebp%2Fquality%2Cq_100");
+  border-radius: 99rem;
+  height: 100%;
+  flex: 1;
+  -webkit-border-radius: 99rem;
+  -moz-border-radius: 99rem;
+  -ms-border-radius: 99rem;
+  -o-border-radius: 99rem;
+  background-size: cover;
+  background-position: center;
+}
+
+.f-star__standart {
+  background: url("https://assetsio.gnwcdn.com/hsr-evernight-build.jpg?width=690&quality=85&format=jpg&auto=webp");
+  border-radius: 99rem;
+  height: 100%;
+  flex: 1;
+  -webkit-border-radius: 99rem;
+  -moz-border-radius: 99rem;
+  -ms-border-radius: 99rem;
+  -o-border-radius: 99rem;
+  background-size: cover;
+  background-position: center;
+}
+
+/* button container */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+  width: 100%;
+  gap: 0.5rem;
+}
+.button {
+  cursor: pointer;
+  padding: 0.5rem;
+  text-align: center;
+  border: 1.5px solid var(--indigo);
+  border-bottom: 0.25rem solid var(--indigo);
+  width: 100%;
+  background-color: var(--gold);
+  transition: filter 0.3s ease-in-out;
+  -webkit-transition: filter 0.3s ease-in-out;
+  -moz-transition: filter 0.3s ease-in-out;
+  -ms-transition: filter 0.3s ease-in-out;
+  -o-transition: filter 0.3s ease-in-out;
+}
+.button:hover {
+  filter: brightness(0.9);
+  -webkit-filter: brightness(0.9);
+}
+.button.close {
+  background-color: var(--strawberry);
+}
+
+/* animasi warp container */
+.warp-animation {
+  opacity: 0;
+  background-color: #1a1a1a80;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  gap: 1.5rem;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -ms-transition: opacity 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out;
+}
+.warp-animation.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.animation-wrapper {
+  display: flex;
+  gap: 1.5rem;
+  width: 100%;
+  justify-content: center;
+  align-items: end;
+  opacity: 0;
+  pointer-events: none;
+}
+.animation-wrapper.active {
+  opacity: 1;
+}
+.star {
+  pointer-events: none;
+  transform: rotate(45deg);
+  background-color: var(--gold);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+}
+
+.star.first {
+  width: 50px;
+  height: 50px;
+}
+.star.first.active {
+  animation: upStar 1.5s cubic-bezier(0, 1, 0, 1) forwards,
+    boomStar 0.5s ease-in forwards 1.5s;
+}
+
+.star.second {
+  width: 40px;
+  height: 40px;
+}
+.star.second.active {
+  animation: upStar 1.5s cubic-bezier(0, 1, 0, 1) forwards;
+  -webkit-animation: upStar 1.5s cubic-bezier(0, 1, 0, 1) forwards;
+  animation-delay: 0.1s;
+}
+
+.star.third {
+  width: 25px;
+  height: 25px;
+}
+.star.third.active {
+  animation: upStar 1.5s cubic-bezier(0, 1, 0, 1) forwards;
+  -webkit-animation: upStar 1.5s cubic-bezier(0, 1, 0, 1) forwards;
+  animation-delay: 0.2s;
+}
+
+.warp-result {
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--gold);
+  width: 100%;
+  height: 100%;
+}
+.warp-result.active {
+  background-color: #1a1a1a80;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* result-wrapper.frist {
+  z-index 10
+  } 
+
+  result wrapper tenth {
+  z-index 1
+  }
+
+  gitu seterusnya, atur pake js jadi posisinya numpuk*/
+
+.result-wrapper {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  width: 100%;
+  height: 100%;
+}
+
+.result-wrapper.first {
+  z-index: 2;
+}
+
+.result-wrapper.second {
+  z-index: 1;
+}
+
+.result {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--gold);
+  border: 0.15rem solid var(--indigo);
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+}
+.result__header {
+  font-weight: 500;
+  text-transform: capitalize;
+  text-align: center;
+  margin-bottom: 2rem;
+  display: inline;
+}
+.highlight {
+  color: var(--pastel-strawberry);
+}
+.result-img {
+  width: 200px;
+  border-radius: 2rem;
+  border: 0.15rem solid var(--indigo);
+  -webkit-border-radius: 2rem;
+  -moz-border-radius: 2rem;
+  -ms-border-radius: 2rem;
+  -o-border-radius: 2rem;
+}
+
+/* animasi bintang naek */
+@keyframes upStar {
+  0% {
+    transform: translateY(0) rotate(45deg);
+    opacity: 1;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50vh) rotate(45deg);
+    opacity: 1;
+    -webkit-transform: translateY(-50vh) rotate(45deg);
+    -moz-transform: translateY(-50vh) rotate(45deg);
+    -ms-transform: translateY(-50vh) rotate(45deg);
+    -o-transform: translateY(-50vh) rotate(45deg);
+  }
+}
+
+@keyframes boomStar {
+  0% {
+    transform: translateY(-50vh) rotate(45deg);
+    -webkit-transform: translateY(-50vh) rotate(45deg);
+    -moz-transform: translateY(-50vh) rotate(45deg);
+    -ms-transform: translateY(-50vh) rotate(45deg);
+    -o-transform: translateY(-50vh) rotate(45deg);
+  }
+  100% {
+    transform: scale(50) rotate(360deg);
+    -webkit-transform: scale(50) rotate(360deg);
+    -moz-transform: scale(50) rotate(360deg);
+    -ms-transform: scale(50) rotate(360deg);
+    -o-transform: scale(50) rotate(360deg);
+  }
+}
