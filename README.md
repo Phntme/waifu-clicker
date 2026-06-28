@@ -1,2 +1,3 @@
 # waifu-clicker
-kelanjutan project waifu clicker dari NNN
+kelanjutan project waifu clicker dari NNN.
+Current Target : Multipull
