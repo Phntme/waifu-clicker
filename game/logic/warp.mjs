@@ -7,10 +7,11 @@ import { updateUI } from "../ui/updateUI.mjs";
 import { element } from "../data/domData.mjs";
 
 let currentPullState = null;
-let currentCardIndex = 0;
 let resultNow = [];
+const currentCardIndex = 0;
 
 function warpHandler(pullType) {
+  resultNow = [];
   let singleCost = gameData.warp.price.single;
   let multiCost = gameData.warp.price.multi;
   currentPullState = pullType;
@@ -19,9 +20,11 @@ function warpHandler(pullType) {
     if (checkWarp(singleCost, gameData.scorePoint)) {
       berhasilWarp(singleCost); //kurangi duit user
       resultNow.push(singlePull()); // masukkan hasil pull ke resultNow variable
+      console.log(`ini resultnow dari single `, resultNow);
       anim.doWarpAnimation(); // lakukan animasi warp
       showResult();
-      warpShowcase(currentPullState, resultNow);
+      displayCard(currentCardIndex, resultNow);
+      // warpShowcase(currentPullState, resultNow);
     } else {
       duitKurang(singleCost);
     }
@@ -29,14 +32,14 @@ function warpHandler(pullType) {
     if (checkWarp(multiCost, gameData.scorePoint)) {
       berhasilWarp(multiCost);
       resultNow.push(...multiPull());
+      console.log(`ini resultnow dari multi `, resultNow);
       anim.doWarpAnimation();
       showResult();
-      warpShowcase(currentPullState, resultNow);
+      displayCard(currentCardIndex, resultNow);
     } else {
       duitKurang(multiCost);
     }
   }
-  console.log(resultNow);
 
   updateUI();
 }
@@ -76,16 +79,6 @@ function multiPull() {
   return multiResult;
 }
 
-function warpShowcase(type, source) {
-  if (type === "single") {
-    displayCard(currentCardIndex, source);
-    resultNow.shift();
-  } else {
-    currentCardIndex = 0;
-    displayCard(currentCardIndex, source);
-  }
-}
-
 function createWarpCard(name, rarity, img) {
   return ` <div class="result-wrapper">
   <div class="result">
@@ -118,10 +111,13 @@ function displayCard(index, source) {
 function resultHandler() {
   if (currentPullState === "single") {
     element.warp.result.classList.remove("active");
-  } else if (currentPullState === "multi" && resultNow.length !== 0) {
-    console.log("ini result now", resultNow);
-    displayCard(currentCardIndex, resultNow);
     resultNow.shift();
+  } else if (currentPullState === "multi" && resultNow.length > 1) {
+    resultNow.shift();
+
+    displayCard(currentCardIndex, resultNow);
+    console.log("ini result now", resultNow);
+    console.log(`ini length dari resultnow`, resultNow.length);
   } else {
     element.warp.result.classList.remove("active");
   }
