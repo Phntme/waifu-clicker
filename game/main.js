@@ -74,14 +74,20 @@ element.upgradeBtn.multi.addEventListener("click", () => {
   upgradeHandler("multi");
 });
 
-element.featureBtn.upgrade.addEventListener("click", () => {
-  showPanel(element.panel.gameplay);
-});
+element.featureBtn.upgrade.forEach((button) =>
+  button.addEventListener("click", () => {
+    showPanel(element.panel.gameplay);
+  }),
+);
 
 element.featureBtn.warp.addEventListener("click", () => {
   showPanel(element.panel.warp);
   warpInflation();
   updateUI();
+});
+
+element.featureBtn.inventory.addEventListener("click", () => {
+  showPanel(element.panel.inventory);
 });
 
 element.switch.limited.addEventListener("click", () => {

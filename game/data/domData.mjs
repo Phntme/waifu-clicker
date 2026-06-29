@@ -24,12 +24,14 @@ export const element = {
     minus: document.querySelector(".currency-min"),
   },
   featureBtn: {
-    upgrade: document.getElementById("upgrade-button"),
+    upgrade: document.querySelectorAll(".upgrade-button-panel"),
     warp: document.getElementById("warp-button"),
+    inventory: document.getElementById("inventory-button"),
   },
   panel: {
     gameplay: document.getElementById("gameplay-panel"),
     warp: document.getElementById("warp-panel"),
+    inventory: document.getElementById("inventory-panel"),
   },
   switch: {
     limited: document.querySelector(".select-limited"),

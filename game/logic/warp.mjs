@@ -20,7 +20,6 @@ function warpHandler(pullType) {
     if (checkWarp(singleCost, gameData.scorePoint)) {
       berhasilWarp(singleCost); //kurangi duit user
       resultNow.push(singlePull()); // masukkan hasil pull ke resultNow variable
-      console.log(`ini resultnow dari single `, resultNow);
       anim.doWarpAnimation(); // lakukan animasi warp
       showResult();
       displayCard(currentCardIndex, resultNow);
@@ -32,7 +31,6 @@ function warpHandler(pullType) {
     if (checkWarp(multiCost, gameData.scorePoint)) {
       berhasilWarp(multiCost);
       resultNow.push(...multiPull());
-      console.log(`ini resultnow dari multi `, resultNow);
       anim.doWarpAnimation();
       showResult();
       displayCard(currentCardIndex, resultNow);
@@ -75,7 +73,6 @@ function multiPull() {
   for (let multiCount = 0; multiCount < 10; multiCount++) {
     multiResult.push(singlePull());
   }
-  console.log(multiResult);
   return multiResult;
 }
 
@@ -116,8 +113,6 @@ function resultHandler() {
     resultNow.shift();
 
     displayCard(currentCardIndex, resultNow);
-    console.log("ini result now", resultNow);
-    console.log(`ini length dari resultnow`, resultNow.length);
   } else {
     element.warp.result.classList.remove("active");
   }

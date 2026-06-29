@@ -7,6 +7,7 @@
     <!-- ini link css -->
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/gacha.css" />
+    <link rel="stylesheet" href="css/inventory.css" />
   </head>
   <body>
     <script src="game/main.js" type="module" defer></script>
@@ -63,21 +64,31 @@
           <!-- container game status end sini -->
           <!-- container feature start -->
           <div class="game-feature">
+            <!-- Upgrade menu button start -->
             <div class="feature-item feature-item__upgrade">
               <span>⭐</span>
               <h2>Upgrade</h2>
             </div>
+            <!-- Upgrade menu button end -->
 
+            <!-- warp menu button start here -->
             <div id="warp-button" class="feature-item feature-item__warp">
               <span>⭐</span>
               <h2>Warp</h2>
             </div>
+            <!-- warp menu button end here -->
 
-            <div class="feature-item feature-item__upgrade">
+            <!-- inventory menu button start here -->
+            <div
+              id="inventory-button"
+              class="feature-item feature-item__inventory"
+            >
               <span>⭐</span>
-              <h2>Upgrade</h2>
+              <h2>Inventory</h2>
             </div>
           </div>
+          <!-- inventory menu button end here -->
+
           <!-- container feature end -->
           <!-- game upgrade section start -->
           <div class="game-upgrade">
@@ -180,20 +191,32 @@
           <div class="button-container">
             <div id="button-single" class="button">1K</div>
             <div id="button-multi" class="button">10K</div>
-            <div id="upgrade-button" class="button close">Close</div>
+            <div class="button close upgrade-button-panel">
+              Back to main menu
+            </div>
           </div>
           <!-- warp button end -->
         </div>
 
-        <div id="result" class="warp-result">
-          <!-- <div class="result-wrapper first">
-              append card disini?
-            </div> -->
-          <!-- <div class="result-wrapper second">
-              <div class="result">SECOND</div>
-            </div> -->
-        </div>
+        <div id="result" class="warp-result"></div>
         <!-- gacha panel end -->
+
+        <!-- inventory panel start -->
+        <div id="inventory-panel" class="panel">
+          <header class="inventory-panel__header-container">
+            <h1>My Collection</h1>
+          </header>
+
+          <!-- inventory showcase start -->
+          <div class="inventory-panel__showcase">
+            <div class="first"></div>
+            <div class="second"></div>
+            <div class=""></div>
+          </div>
+          <!-- inventory showcase end -->
+          <div class="button close upgrade-button-panel">Back to main menu</div>
+        </div>
+        <!-- inventory panel end -->
       </div>
     </div>
     <!-- pop up section start -->
