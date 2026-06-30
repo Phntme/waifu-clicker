@@ -47,10 +47,13 @@
 
   display: grid;
   gap: 0.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
 
-.inventory-panel__showcase div {
+.inventory-panel__showcase div.card-container {
+  text-transform: capitalize;
+  text-align: center;
+  /* background-color: red; */
   transform: scale(95%);
   border-radius: 0.5rem;
   aspect-ratio: 1 / 1;
@@ -86,11 +89,34 @@
       );
 }
 
-.inventory-panel__showcase div:hover {
-  transform: translateY(-0.5rem);
-  border-color: var(--strawberry);
+.inventory-card__header {
+  font-size: 6vw;
+  color: var(--indigo);
+  font-weight: 500;
 }
+
+.inventory-panel__showcase div.card-container:hover {
+  transform: translateY(-0.5rem);
+}
+
+/* .inventory-panel__showcase div.card-container.normal:hover {
+  border-color: var(--strawberry);
+} */
 
 .inventory-panel__showcase div img {
   width: 100%;
+}
+
+.inventory-panel__showcase .quantity {
+  position: absolute;
+  min-width: 8vw;
+  aspect-ratio: 1 / 1;
+  background-color: orange;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 4vw;
+  bottom: 5%;
+  left: 5%;
 }

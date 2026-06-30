@@ -54,4 +54,5 @@ export const element = {
     name: document.getElementById("result-name"),
     img: document.getElementById("result-img"),
   },
+  inventory: document.getElementById("inventory-container"),
 };

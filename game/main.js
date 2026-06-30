@@ -6,7 +6,7 @@ import { showPanel, switchPanel } from "./ui/panel.mjs";
 import { warpHandler, resultHandler } from "./logic/warp.mjs";
 import { gameData } from "./data/gameData.mjs";
 import * as anim from "./ui/animation.mjs";
-import { updateUI } from "./ui/updateUI.mjs";
+import { updateUI, updateInventory } from "./ui/updateUI.mjs";
 import { warpInflation } from "./ui/panel.mjs";
 
 loadGame(); // pertama kali di load / dilakukan
@@ -88,6 +88,7 @@ element.featureBtn.warp.addEventListener("click", () => {
 
 element.featureBtn.inventory.addEventListener("click", () => {
   showPanel(element.panel.inventory);
+  updateInventory();
 });
 
 element.switch.limited.addEventListener("click", () => {

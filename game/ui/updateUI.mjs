@@ -58,11 +58,34 @@ export function updateUI() {
   saveGame();
 }
 
-function createInventoryCard(source) {
-  const card = `<div class="second"><img src="${source}" alt=""></div>`;
+function createInventoryCard(character) {
+  // cek rarity characternya 5? 4? atau 3?
+  const rarity =
+    character.rarity === 5
+      ? "mythical" // class cardnya mythic
+      : character.rarity === 4
+        ? "rare" // class cardnya rare
+        : "normal"; // class cardnya normal
+
+  const card = `
+  <div class="card-container ${rarity}">
+              <h1 class="inventory-card__header">${character.name}</h1>
+              <img src="${character.source}" alt="" />
+              <div class="quantity">${character.quantity}</div>
+            </div>
+  `;
   return card;
 }
 
 export function updateInventory() {
-  gameData.inventory.forEach((character) => {});
+  // ambil containernya dulu
+  const container = element.inventory;
+
+  container.innerHTML = "";
+
+  gameData.inventory.forEach((character) => {
+    const cardHTML = createInventoryCard(character);
+
+    container.insertAdjacentHTML("beforeend", cardHTML);
+  });
 }
