@@ -5,7 +5,9 @@ import { showResult } from "../ui/warpPanel.mjs";
 import * as anim from "../ui/animation.mjs";
 import { updateUI } from "../ui/updateUI.mjs";
 import { element } from "../data/domData.mjs";
+import { addToInventory } from "./saveWarp.mjs";
 
+let userInventory = [];
 let currentPullState = null;
 let resultNow = [];
 const currentCardIndex = 0;
@@ -19,7 +21,14 @@ function warpHandler(pullType) {
   if (pullType === "single") {
     if (checkWarp(singleCost, gameData.scorePoint)) {
       berhasilWarp(singleCost); //kurangi duit user
-      resultNow.push(singlePull()); // masukkan hasil pull ke resultNow variable
+
+      const currentResult = singlePull();
+      resultNow.push(currentResult); // masukkan hasil pull ke resultNow variable
+      userInventory.push(currentResult);
+      // console.log(userInventory);
+      addToInventory(currentResult);
+      // console.log(gameData);
+
       anim.doWarpAnimation(); // lakukan animasi warp
       showResult();
       displayCard(currentCardIndex, resultNow);
@@ -30,13 +39,25 @@ function warpHandler(pullType) {
   } else {
     if (checkWarp(multiCost, gameData.scorePoint)) {
       berhasilWarp(multiCost);
-      resultNow.push(...multiPull());
+
+      const currentResult = multiPull();
+      resultNow.push(...currentResult);
+      userInventory.push(...currentResult);
+      addToInventory(currentResult);
+      console.log(
+        "ini adalah current result yang tidak dispread ",
+        currentResult,
+      );
+
       anim.doWarpAnimation();
+
       showResult();
       displayCard(currentCardIndex, resultNow);
     } else {
       duitKurang(multiCost);
     }
+
+    // saveGacha();
   }
 
   updateUI();

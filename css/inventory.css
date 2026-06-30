@@ -91,10 +91,6 @@
   border-color: var(--strawberry);
 }
 
-.inventory-panel__showcase div.first {
-  background-image: url(../img/blush.jpg);
-}
-
-.inventory-panel__showcase div.second {
-  background-image: url(../img/bleh.jpg);
+.inventory-panel__showcase div img {
+  width: 100%;
 }

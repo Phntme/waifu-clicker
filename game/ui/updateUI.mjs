@@ -41,19 +41,28 @@ export function updateUI() {
   }
 
   element.upgradePrice.tap.textContent = formatNumber(
-    gameData.upgrade[0].price
+    gameData.upgrade[0].price,
   );
 
   element.upgradePrice.auto.textContent = formatNumber(
-    gameData.upgrade[1].price
+    gameData.upgrade[1].price,
   );
   element.upgradePrice.multi.textContent = formatNumber(
-    gameData.upgrade[2].price
+    gameData.upgrade[2].price,
   );
 
   element.gachaBtn.single.textContent = formatNumber(
-    gameData.warp.price.single
+    gameData.warp.price.single,
   );
   element.gachaBtn.multi.textContent = formatNumber(gameData.warp.price.multi);
   saveGame();
+}
+
+function createInventoryCard(source) {
+  const card = `<div class="second"><img src="${source}" alt=""></div>`;
+  return card;
+}
+
+export function updateInventory() {
+  gameData.inventory.forEach((character) => {});
 }
