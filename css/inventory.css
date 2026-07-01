@@ -51,17 +51,16 @@
 }
 
 .inventory-panel__showcase div.card-container {
+  position: relative;
+  z-index: 3;
   text-transform: capitalize;
   text-align: center;
   /* background-color: red; */
   transform: scale(95%);
   border-radius: 0.5rem;
-  aspect-ratio: 1 / 1;
+  /* aspect-ratio: 1 / 1; */
   border: 1px solid var(--indigo);
   border-bottom: 5px solid var(--indigo);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
   padding: 0.25rem;
   transition:
     border-color 0.25s ease-in-out,
@@ -87,6 +86,7 @@
         0.998 66.5%,
         1
       );
+  overflow: hidden;
 }
 
 .inventory-card__header {
@@ -95,22 +95,75 @@
   font-weight: 500;
 }
 
+.inventory-panel__showcase div.card-container.mythical {
+  border: none;
+  padding: 0 0.5rem;
+  animation: mythicGlow 3s ease-in-out infinite alternate;
+}
+
+.inventory-panel__showcase div.card-container.mythical::before {
+  content: "";
+  position: absolute;
+  top: -20vw;
+  left: -20vw;
+  width: 200%;
+  height: 200%;
+  /* warna gradient mythic */
+  background: conic-gradient(#b39ddb, #f48fb1, #80deea, #ffe082, #b39ddb);
+  animation: spinRGB 4s linear infinite;
+  z-index: 1;
+}
+
+.inventory-panel__showcase div.card-container.mythical > * {
+  position: relative;
+  z-index: 2;
+}
+
+.inventory-panel__showcase div.card-container.mythical::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  background-color: var(--lav);
+  border-radius: 0.4rem;
+  z-index: 1;
+}
+
+@keyframes spinRGB {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes mythicGlow {
+  0% {
+    box-shadow:
+      0 0 15px rgba(179, 157, 219, 0.5),
+      0 0 30px rgba(128, 222, 234, 0.2);
+  }
+  100% {
+    box-shadow:
+      0 0 25px rgba(244, 143, 177, 0.8),
+      0 0 50px rgba(255, 224, 130, 0.4);
+  }
+}
+
 .inventory-panel__showcase div.card-container:hover {
   transform: translateY(-0.5rem);
 }
 
-/* .inventory-panel__showcase div.card-container.normal:hover {
-  border-color: var(--strawberry);
-} */
-
 .inventory-panel__showcase div img {
   width: 100%;
+  border-radius: 0.25rem;
 }
 
 .inventory-panel__showcase .quantity {
   position: absolute;
   min-width: 8vw;
-  aspect-ratio: 1 / 1;
+  min-height: 8vw;
+  /* aspect-ratio: 1 / 1; */
   background-color: orange;
   display: flex;
   justify-content: center;
@@ -119,4 +172,38 @@
   font-size: 4vw;
   bottom: 5%;
   left: 5%;
+}
+
+.inventory-panel__showcase div.card-container.mythical .quantity {
+  position: absolute;
+}
+
+.inventory-panel__showcase div.card-container.rare {
+  /* Warna border awal (Pastel Ungu) */
+  border: 2px solid #b39ddb;
+  border-bottom: 5px solid #b39ddb;
+
+  /* Jalankan animasi pulseBorder selama 2 detik, halus (ease-in-out), dan berulang terus */
+  animation: pulseRare 2s ease-in-out infinite;
+}
+
+/* ANIMASI PULSE (BERDENYUT & BERUBAH WARNA) */
+@keyframes pulseRare {
+  0% {
+    border-color: #b39ddb; /* Pastel Ungu */
+    border-bottom-color: #b39ddb;
+    /* Efek glow tipis di awal */
+    box-shadow: 0 0 8px rgba(179, 157, 219, 0.4);
+  }
+  50% {
+    border-color: #f48fb1; /* Pastel Pink */
+    border-bottom-color: #f48fb1;
+    /* Efek glow membesar dan menguat saat di tengah animasi */
+    box-shadow: 0 0 18px rgba(244, 143, 177, 0.8);
+  }
+  100% {
+    border-color: #b39ddb; /* Kembali ke Pastel Ungu */
+    border-bottom-color: #b39ddb;
+    box-shadow: 0 0 8px rgba(179, 157, 219, 0.4);
+  }
 }
